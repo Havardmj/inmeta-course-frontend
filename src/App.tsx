@@ -1,14 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Course from "./course/Course";
+import CourseProvider from "./contextprovider/CourseProvider";
 
 function App() {
   return (
+    <CourseProvider>
       <BrowserRouter basename={"/"}>
         <Switch>
           <Route path="/test">
             <>testing ...1, 2, 3</>
+          </Route>
+          <Route path="/course">
+            <Course />
           </Route>
           <Route path="/home">
             <div className="App">
@@ -18,10 +24,10 @@ function App() {
                   Edit <code>src/App.tsx</code> and save to reload.
                 </p>
                 <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  className="App-link"
+                  href="https://reactjs.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Learn React
                 </a>
@@ -30,7 +36,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-
+    </CourseProvider>
   );
 }
 
