@@ -48,3 +48,11 @@ export const updateCourseInformasjon = async (
     },
   });
 };
+
+export const addCourse = async (course: Partial<Course>): Promise<void> => {
+  const response = await api.post(COURSE + "/add-course", course, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};

@@ -7,6 +7,7 @@ import ContentCopy from "@mui/icons-material/ContentCopy";
 import ContentPaste from "@mui/icons-material/ContentPaste";
 import BEMHelper from "../utils/bem";
 import "./sideMenu.less";
+import { NavLink } from "react-router-dom";
 
 const SideMenu: React.FunctionComponent = () => {
   const cls = BEMHelper("sidemenu");
@@ -15,18 +16,22 @@ const SideMenu: React.FunctionComponent = () => {
       <Paper sx={{ width: 320, maxWidth: "100%" }}>
         <MenuList>
           <div className={cls.element("menulist")}>
-            <MenuItem>
-              <ListItemIcon>
-                <ContentPaste fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Kurs</ListItemText>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <ContentCopy fontSize="small" />
-              </ListItemIcon>
-              <ListItemText>Deltakere</ListItemText>
-            </MenuItem>
+            <NavLink to={"/kurs"}>
+              <MenuItem>
+                <ListItemIcon>
+                  <ContentPaste fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Kurs</ListItemText>
+              </MenuItem>
+            </NavLink>
+            <NavLink to={"/deltaker"}>
+              <MenuItem>
+                <ListItemIcon>
+                  <ContentCopy fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Deltaker</ListItemText>
+              </MenuItem>
+            </NavLink>
           </div>
         </MenuList>
       </Paper>

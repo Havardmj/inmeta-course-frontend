@@ -14,8 +14,6 @@ const CourseTable: FunctionComponent<{}> = () => {
   const { courses, currentCourseCheckedOn, setCheckedCourse } =
     useContext(CourseContext);
 
-  console.log("kurs tabel: ", courses);
-
   return (
     <div>
       <TableContainer component={Paper}>

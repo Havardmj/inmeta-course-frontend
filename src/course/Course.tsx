@@ -25,7 +25,7 @@ const Course: React.FunctionComponent = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar tittel="Kurs administrasjon" />
       <div className={cls.className}>
         <Grid container spacing={2}>
           <Grid xs={6} md={4}>
@@ -33,7 +33,7 @@ const Course: React.FunctionComponent = () => {
             <SidemenuAddCourse />
           </Grid>
           <Grid xs={6} md={8}>
-            <div>
+            <div className={cls.element("content-wrapper")}>
               <CourseTable />
               {selectedCourse && (
                 <div className={cls.element("item-wrapper")}>

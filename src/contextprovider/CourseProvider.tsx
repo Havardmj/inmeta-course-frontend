@@ -14,6 +14,7 @@ interface Context {
   currentCourseCheckedOn: number;
   setCourses: (courses: Array<Course>) => void;
   setCheckedCourse: (courseIndex: number) => void;
+  setCheckedCourseForParticipant: (courseIndex: number) => void;
 }
 
 export const CourseContext = React.createContext<Context>({} as Context);
@@ -27,6 +28,11 @@ const CourseProvider: FunctionComponent = (props: PropsWithChildren<{}>) => {
 
   const setCourses = (courses: Array<Course>): void => {
     setCurrentlist(courses);
+  };
+
+  const setcheckCourseParticipant = (courseIndex: number) => {
+    setCheckedOn(courseIndex);
+    setCurrentSelectedCourse(currentlist[courseIndex]);
   };
 
   const setCheckedCourse = (courseIndex: number) => {
@@ -44,6 +50,7 @@ const CourseProvider: FunctionComponent = (props: PropsWithChildren<{}>) => {
     currentCourseCheckedOn: checkedOn as number,
     setCheckedCourse,
     selectedCourse: currentSelectedCourse as Course,
+    setCheckedCourseForParticipant: setcheckCourseParticipant,
   };
 
   return (
