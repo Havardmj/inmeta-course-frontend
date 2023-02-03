@@ -20,7 +20,7 @@ const CourseTable: FunctionComponent<{}> = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Course name</TableCell>
+              <TableCell>Kurs navn</TableCell>
               <TableCell align="right">Instruktør</TableCell>
               <TableCell align="right">Rom</TableCell>
               <TableCell align="right">Kurs start</TableCell>

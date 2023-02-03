@@ -9,6 +9,7 @@ import * as RestService from "../services/rest-service";
 import { Course as CourseData } from "../services/rest-service";
 import CourseList from "./CourseList";
 import ParticipantTable from "./ParticipantTable";
+import "./participant.less";
 
 const Participant: FunctionComponent = () => {
   const cls = BEMHelper("participant");
@@ -24,7 +25,7 @@ const Participant: FunctionComponent = () => {
   return (
     <div>
       <Navbar tittel="deltaker administrasjon" />
-      <div>
+      <div className={cls.className}>
         <Grid container spacing={0}>
           <Grid xs={6} md={3}>
             <SideMenu />

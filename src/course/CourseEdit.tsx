@@ -1,4 +1,9 @@
-import React, { FunctionComponent, useContext, useState } from "react";
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { CourseContext } from "../contextprovider/CourseProvider";
 import { Course } from "../services/rest-service";
@@ -11,6 +16,19 @@ const CourseEdit: FunctionComponent = () => {
   const [course, setCourse] = useState<Course>(selectedCourse);
   const [canEdit, setCanEdit] = useState<boolean>(true);
   const cls = BEMHelper("course-edit");
+
+  useEffect(() => {
+    console.log(
+      "course ",
+      course,
+      " selectedCourse ",
+      selectedCourse,
+      course === selectedCourse
+    );
+    if (course !== selectedCourse) {
+      setCourse(selectedCourse);
+    }
+  }, [selectedCourse]);
 
   return (
     <div className={cls.className}>

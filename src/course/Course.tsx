@@ -28,7 +28,7 @@ const Course: React.FunctionComponent = () => {
       <Navbar tittel="Kurs administrasjon" />
       <div className={cls.className}>
         <Grid container spacing={2}>
-          <Grid xs={6} md={4}>
+          <Grid xs={6} md={3}>
             <SideMenu />
             <SidemenuAddCourse />
           </Grid>
