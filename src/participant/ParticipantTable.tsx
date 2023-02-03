@@ -50,7 +50,6 @@ const ParticipantTable: FunctionComponent = () => {
                     <TableCell component="th" scope="row">
                       <div>
                         <Checkbox />
-                        <Checkbox />
                         {participant.firstName}
                       </div>
                     </TableCell>
