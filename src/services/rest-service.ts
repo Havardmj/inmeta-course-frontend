@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { UpdateCourse } from "../types/course";
 
 const api = axios.create({
@@ -12,6 +12,7 @@ const api = axios.create({
 });
 
 const COURSE = "/course";
+const PARTICIPANT = "/participant";
 
 export interface Course {
   id: string;
@@ -41,18 +42,38 @@ export const getAllCourses = async (): Promise<Array<Course>> => {
 export const updateCourseInformasjon = async (
   updateCourse: UpdateCourse,
   id: string
-): Promise<void> => {
+): Promise<AxiosResponse<any, any>> => {
   const response = await api.put(COURSE + `/edit-course/${id}`, updateCourse, {
     headers: {
       "Content-Type": "application/json",
     },
   });
+  return response;
 };
 
-export const addCourse = async (course: Partial<Course>): Promise<void> => {
+export const addCourse = async (
+  course: Partial<Course>
+): Promise<AxiosResponse<any, any>> => {
   const response = await api.post(COURSE + "/add-course", course, {
     headers: {
       "Content-Type": "application/json",
     },
   });
+  return response;
+};
+
+export const addParticipantToCourse = async (
+  id: string,
+  participant: Participant
+): Promise<AxiosResponse<any, any>> => {
+  const response = await api.post(
+    PARTICIPANT + "/add-participant/" + id,
+    participant,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return response;
 };

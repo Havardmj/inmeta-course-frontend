@@ -6,25 +6,25 @@ import React, {
 } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { CourseContext } from "../contextprovider/CourseProvider";
-import { Course } from "../services/rest-service";
+import { Course as CourseData, Course } from "../services/rest-service";
 import BEMHelper from "../utils/bem";
 import "./courseEdit.less";
 import * as RestService from "../services/rest-service";
 
 const CourseEdit: FunctionComponent = () => {
-  const { selectedCourse } = useContext(CourseContext);
+  const { selectedCourse, setCourses } = useContext(CourseContext);
   const [course, setCourse] = useState<Course>(selectedCourse);
   const [canEdit, setCanEdit] = useState<boolean>(true);
   const cls = BEMHelper("course-edit");
 
+  const updateCourseContext = () => {
+    const allCourses = RestService.getAllCourses();
+    allCourses.then((response: CourseData[]) => {
+      setCourses(response);
+    });
+  };
+
   useEffect(() => {
-    console.log(
-      "course ",
-      course,
-      " selectedCourse ",
-      selectedCourse,
-      course === selectedCourse
-    );
     if (course !== selectedCourse) {
       setCourse(selectedCourse);
     }
@@ -54,7 +54,6 @@ const CourseEdit: FunctionComponent = () => {
               readOnly: canEdit,
             }}
             onChange={(event) => {
-              console.log("test ", event.target.value);
               setCourse({ ...course, instructor: event.target.value });
             }}
             variant="standard"
@@ -119,7 +118,7 @@ const CourseEdit: FunctionComponent = () => {
           <Button
             variant="contained"
             onClick={() => {
-              RestService.updateCourseInformasjon(
+              const response = RestService.updateCourseInformasjon(
                 {
                   courseName: course.courseName,
                   instructor: course.instructor,
@@ -129,6 +128,12 @@ const CourseEdit: FunctionComponent = () => {
                 },
                 selectedCourse.id
               );
+              response.then((res) => {
+                if (res.status >= 200 || res.status <= 300) {
+                  setCanEdit(true);
+                  updateCourseContext();
+                }
+              });
             }}
           >
             Oppdatere informasjon

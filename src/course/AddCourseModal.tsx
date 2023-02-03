@@ -4,9 +4,9 @@ import React, {
   SetStateAction,
   useState,
 } from "react";
-import { Button, Modal, TextField, Typography } from "@mui/material";
+import { Button, Modal, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
-import { addCourse, Course } from "../services/rest-service";
+import { Course } from "../services/rest-service";
 import BEMHelper from "../utils/bem";
 import "./addCourseModal.less";
 import * as RestService from "../services/rest-service";
@@ -16,7 +16,7 @@ interface Props {
   handleClose: Dispatch<SetStateAction<boolean>>;
 }
 
-const style = {
+export const costumModalstyle = {
   position: "absolute" as "absolute",
   top: "50%",
   left: "50%",
@@ -48,7 +48,7 @@ const AddCourseModal: FunctionComponent<Props> = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={costumModalstyle}>
           <div>
             <div className={cls.element("row")}>
               <TextField
@@ -68,7 +68,6 @@ const AddCourseModal: FunctionComponent<Props> = ({
                 label={"Kurs veileder"}
                 value={addCourse.instructor}
                 onChange={(event) => {
-                  console.log("test ", event.target.value);
                   setAddCourse({
                     ...addCourse,
                     instructor: event.target.value,
@@ -122,7 +121,18 @@ const AddCourseModal: FunctionComponent<Props> = ({
                     addCourse.courseEnd,
                     addCourse.room)
                   ) {
-                    RestService.addCourse(addCourse);
+                    const response = RestService.addCourse(addCourse);
+                    response.then((res) => {
+                      if (res.status >= 200 || res.status <= 300) {
+                        handleClose(false);
+                        setAddCourse({
+                          courseName: "",
+                          instructor: "",
+                          courseBegin: "",
+                          courseEnd: "",
+                        });
+                      }
+                    });
                   }
                 }}
               >
