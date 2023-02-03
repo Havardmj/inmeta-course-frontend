@@ -10,6 +10,7 @@ import { Course as CourseData } from "../services/rest-service";
 import CourseList from "./CourseList";
 import ParticipantTable from "./ParticipantTable";
 import "./participant.less";
+import SidemenuAddParticipant from "../sidemenu/SidemenuAddParticipant";
 
 const Participant: FunctionComponent = () => {
   const cls = BEMHelper("participant");
@@ -29,7 +30,7 @@ const Participant: FunctionComponent = () => {
         <Grid container spacing={0}>
           <Grid xs={6} md={3}>
             <SideMenu />
-            <SidemenuAddCourse />
+            <SidemenuAddParticipant />
           </Grid>
           <Grid xs={6} md={3}>
             <div>

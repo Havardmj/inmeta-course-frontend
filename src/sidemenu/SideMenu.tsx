@@ -8,8 +8,11 @@ import ContentPaste from "@mui/icons-material/ContentPaste";
 import BEMHelper from "../utils/bem";
 import "./sideMenu.less";
 import { NavLink } from "react-router-dom";
+import React, { PropsWithChildren } from "react";
 
-const SideMenu: React.FunctionComponent = () => {
+const SideMenu: React.FunctionComponent<{}> = (
+  props: PropsWithChildren<{}>
+) => {
   const cls = BEMHelper("sidemenu");
   return (
     <div className={cls.className}>
